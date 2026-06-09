@@ -1,0 +1,11 @@
+.slack-mathjax-process mjx-container {
+  font-size: 105%;
+}
+
+.slack-mathjax-process mjx-container[display="true"] {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
