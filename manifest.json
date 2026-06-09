@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Slack MathJax Renderer",
-  "description": "Render \\(...\\) and \\[...\\] LaTeX expressions in Slack Web.",
-  "version": "0.1.2",
+  "description": "Render \\(...\\), \\[...\\], and bussproofs proof trees in Slack Web.",
+  "version": "0.1.3",
 
   "content_scripts": [
     {
       "matches": [
-        "https://*.slack.com/*"
+        "https://*.slack.com/*",
+        "https://app.slack.com/*"
       ],
       "js": [
         "mathjax-config.js",
@@ -27,7 +28,8 @@
         "mathjax/**"
       ],
       "matches": [
-        "https://*.slack.com/*"
+        "https://*.slack.com/*",
+        "https://app.slack.com/*"
       ]
     }
   ]
