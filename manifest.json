@@ -13,7 +13,7 @@
         "mathjax-config.js",
         "mathjax/tex-svg.js",
         "content.js"
-      ]
+      ],
       "css": [
         "content.css"
       ],
