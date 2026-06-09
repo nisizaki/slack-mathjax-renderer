@@ -1,4 +1,15 @@
+const mathjaxBase = chrome.runtime.getURL('mathjax');
+
 window.MathJax = {
+  loader: {
+    paths: {
+      mathjax: mathjaxBase
+    },
+    load: [
+      '[tex]/bussproofs'
+    ]
+  },
+
   tex: {
     packages: {
       '[+]': [
