@@ -1,11 +1,19 @@
 window.MathJax = {
   tex: {
+    packages: {
+      '[+]': [
+        'bussproofs'
+      ]
+    },
+
     inlineMath: [
       ['\\(', '\\)']
     ],
+
     displayMath: [
       ['\\[', '\\]']
     ],
+
     processEscapes: true
   },
 
