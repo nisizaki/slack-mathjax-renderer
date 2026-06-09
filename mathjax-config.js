@@ -1,17 +1,6 @@
-const mathjaxBase = chrome.runtime.getURL('mathjax');
-
-console.log('[Slack MathJax] MathJax base:', mathjaxBase);
+console.log('[Slack MathJax] mathjax-config.js loaded');
 
 window.MathJax = {
-  loader: {
-    paths: {
-      mathjax: mathjaxBase
-    },
-    load: [
-      '[tex]/bussproofs'
-    ]
-  },
-
   tex: {
     packages: {
       '[+]': [
@@ -53,6 +42,7 @@ window.MathJax = {
       console.log('[Slack MathJax] startup.ready called');
       MathJax.startup.defaultReady();
       console.log('[Slack MathJax] MathJax is ready');
+      console.log('[Slack MathJax] tex packages:', MathJax.config.tex.packages);
     }
   }
 };
