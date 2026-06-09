@@ -1,5 +1,5 @@
 .slack-mathjax-processed {
-  opacity: 0.35;
+  display: none;
 }
 
 .slack-mathjax-rendered {
