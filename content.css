@@ -1,8 +1,17 @@
-.slack-mathjax-process mjx-container {
+.slack-mathjax-processed {
+  opacity: 0.35;
+}
+
+.slack-mathjax-rendered {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+.slack-mathjax-rendered mjx-container {
   font-size: 105%;
 }
 
-.slack-mathjax-process mjx-container[display="true"] {
+.slack-mathjax-rendered mjx-container[display="true"] {
   margin-top: 0.4em;
   margin-bottom: 0.4em;
   overflow-x: auto;
