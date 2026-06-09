@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Slack MathJax Renderer",
   "description": "Render \\(...\\) and \\[...\\] LaTeX expressions in Slack Web.",
-  "version": "0.1.0",
+  "version": "0.1.1",
 
   "content_scripts": [
     {
@@ -11,6 +11,7 @@
       ],
       "js": [
         "mathjax-config.js",
+        "mathjax/input/tex/extensions/bussproofs.js",
         "mathjax/tex-svg.js",
         "content.js"
       ],
