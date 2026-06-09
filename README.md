@@ -2,14 +2,34 @@
 
 Slack MathJax Renderer is a Chrome extension that renders LaTeX expressions in Slack Web.
 
-This extension supports the following LaTeX delimiters only:
+This extension is intended to be installed as an unpacked Chrome extension.
+
+## Features
+
+This extension supports the following LaTeX delimiters:
 
 * Inline math: `\(...\)`
 * Display math: `\[...\]`
 
 The delimiters `$...$` and `$$...$$` are intentionally not supported, because the dollar sign is often used in ordinary text, shell commands, prices, and other non-mathematical contexts.
 
-This extension also supports proof trees written with the `bussproofs` syntax, such as `\begin{prooftree} ... \end{prooftree}`, when they are placed inside display math delimiters `\[ ... \]`.
+This extension also supports proof trees written with the `bussproofs` syntax, such as:
+
+```text
+\begin{prooftree}
+...
+\end{prooftree}
+```
+
+A proof tree must be enclosed in display math delimiters:
+
+```text
+\[
+\begin{prooftree}
+...
+\end{prooftree}
+\]
+```
 
 ## Dependency
 
@@ -34,6 +54,16 @@ The file `mathjax/tex-svg-full.js` was taken from the MathJax npm package:
 ```text
 mathjax@3.2.2
 ```
+
+The `node_modules` directory is not required for installation and is not intended to be included in this repository.
+
+## License notice for MathJax
+
+MathJax is distributed under the Apache License, Version 2.0.
+
+The bundled MathJax file is not original code of this extension. It is included only so that this Chrome extension can be installed locally without downloading MathJax separately.
+
+If this repository contains a `THIRD_PARTY_NOTICES.md` file, see that file for additional third-party software notices.
 
 ## Example
 
@@ -76,8 +106,6 @@ If the extension is installed correctly, the proof tree will be rendered in Slac
 * Slack Web
 * This repository downloaded or cloned to your local computer
 
-This extension is intended to be installed as an unpacked Chrome extension.
-
 ## Installation
 
 ### 1. Download this repository
@@ -102,7 +130,7 @@ Replace `YOUR_ACCOUNT` with the actual GitHub account name.
 
 ### 2. Check the required files
 
-The extension folder should contain files such as:
+The extension folder should contain the following files:
 
 ```text
 manifest.json
@@ -274,13 +302,15 @@ mathjax/tex-svg-full.js
 
 ### Some complex formulas are not rendered
 
-Reload the extension from:
+Open:
 
 ```text
 chrome://extensions/
 ```
 
-Then close and reopen the Slack Web tab.
+Click the reload button for this extension.
+
+Then close the Slack Web tab and open Slack Web again.
 
 This extension renders LaTeX in a separate display area instead of directly modifying the original Slack message body. This is intended to avoid conflicts with Slack's own dynamic page rendering.
 
@@ -296,14 +326,34 @@ Other Slack users will not see rendered formulas unless they also install this e
 
 Slack MathJax Renderer は、Slack Web上のLaTeX記法を数式として表示するためのChrome拡張機能です。
 
-この拡張機能は、次のLaTeX区切り記号だけに対応します。
+この拡張機能は、Chromeの「パッケージ化されていない拡張機能」としてインストールすることを想定しています。
+
+## 機能
+
+この拡張機能は、次のLaTeX区切り記号に対応します。
 
 * インライン数式: `\(...\)`
 * ディスプレイ数式: `\[...\]`
 
 `$...$` や `$$...$$` には対応していません。ドル記号 `$` は、通常の文章、シェルコマンド、金額などにもよく使われるため、誤って数式として扱われることを避けるためです。
 
-また、ディスプレイ数式 `\[ ... \]` の中に書かれた `bussproofs` 形式の証明木、たとえば `\begin{prooftree} ... \end{prooftree}` にも対応します。
+また、次のような `bussproofs` 形式の証明木にも対応します。
+
+```text
+\begin{prooftree}
+...
+\end{prooftree}
+```
+
+証明木は、次のようにディスプレイ数式の区切り記号で囲む必要があります。
+
+```text
+\[
+\begin{prooftree}
+...
+\end{prooftree}
+\]
+```
 
 ## 依存関係
 
@@ -328,6 +378,16 @@ mathjax/tex-svg-full.js
 ```text
 mathjax@3.2.2
 ```
+
+`node_modules` ディレクトリはインストールには不要であり、このリポジトリに含めることは想定していません。
+
+## MathJaxのライセンス表示
+
+MathJax は Apache License, Version 2.0 の下で配布されています。
+
+同梱している MathJax ファイルは、この拡張機能の独自コードではありません。利用者が別途 MathJax をダウンロードしなくてもChrome拡張機能をローカルにインストールできるようにするために含めています。
+
+このリポジトリに `THIRD_PARTY_NOTICES.md` が含まれている場合は、第三者ソフトウェアに関する追加情報をそのファイルで確認してください。
 
 ## 例
 
@@ -370,8 +430,6 @@ Slack Webに次のように投稿します。
 * Slack Web
 * このリポジトリをダウンロードまたはcloneしたフォルダ
 
-この拡張機能は、Chromeの「パッケージ化されていない拡張機能」としてインストールします。
-
 ## インストール手順
 
 ### 1. このリポジトリをダウンロードする
@@ -396,7 +454,7 @@ git clone https://github.com/YOUR_ACCOUNT/slack-mathjax-renderer.git
 
 ### 2. 必要なファイルを確認する
 
-拡張機能のフォルダには、次のようなファイルが含まれている必要があります。
+拡張機能のフォルダには、次のファイルが含まれている必要があります。
 
 ```text
 manifest.json
