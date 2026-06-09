@@ -1,5 +1,7 @@
 const mathjaxBase = chrome.runtime.getURL('mathjax');
 
+console.log('[Slack MathJax] MathJax base:', mathjaxBase);
+
 window.MathJax = {
   loader: {
     paths: {
@@ -46,6 +48,11 @@ window.MathJax = {
   },
 
   startup: {
-    typeset: false
+    typeset: false,
+    ready: () => {
+      console.log('[Slack MathJax] startup.ready called');
+      MathJax.startup.defaultReady();
+      console.log('[Slack MathJax] MathJax is ready');
+    }
   }
 };
