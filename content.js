@@ -1,6 +1,6 @@
 (() => {
   const PROCESSED_CLASS = 'slack-mathjax-processed';
-  const PROCESS_CLASS = 'slack-mathjax-process';
+  const RENDERED_CLASS = 'slack-mathjax-rendered';
 
   const MESSAGE_SELECTORS = [
     '[data-qa="message-text"]',
@@ -34,6 +34,7 @@
       root.querySelectorAll(selector).forEach((el) => {
         if (isInsideIgnoredArea(el)) return;
         if (el.classList.contains(PROCESSED_CLASS)) return;
+        if (el.closest(`.${RENDERED_CLASS}`)) return;
 
         const text = el.innerText || el.textContent || '';
         if (!containsLatex(text)) return;
@@ -43,6 +44,19 @@
     }
 
     return elements;
+  }
+
+  function makeRenderBox(sourceElement) {
+    const box = document.createElement('div');
+    box.className = RENDERED_CLASS;
+
+    const text = sourceElement.innerText || sourceElement.textContent || '';
+    box.textContent = text;
+
+    sourceElement.classList.add(PROCESSED_CLASS);
+    sourceElement.after(box);
+
+    return box;
   }
 
   async function renderCandidates() {
@@ -57,32 +71,29 @@
       const candidates = findCandidateElements();
 
       if (candidates.length > 0) {
-        for (const el of candidates) {
-          el.classList.add(PROCESSED_CLASS);
-          el.classList.add(PROCESS_CLASS);
-        }
+        const boxes = candidates.map(makeRenderBox);
 
         if (window.MathJax && window.MathJax.typesetPromise) {
-          await window.MathJax.typesetPromise(candidates);
+          await window.MathJax.typesetPromise(boxes);
         } else {
-          console.warn('MathJax is not ready yet.');
+          console.warn('[Slack MathJax] MathJax is not ready yet.');
         }
       }
     } catch (error) {
-      console.error('Slack MathJax rendering failed:', error);
+      console.error('[Slack MathJax] rendering failed:', error);
     } finally {
       rendering = false;
 
       if (pending) {
         pending = false;
-        setTimeout(renderCandidates, 200);
+        setTimeout(renderCandidates, 500);
       }
     }
   }
 
   function scheduleRender() {
     clearTimeout(scheduleRender.timer);
-    scheduleRender.timer = setTimeout(renderCandidates, 300);
+    scheduleRender.timer = setTimeout(renderCandidates, 500);
   }
 
   const observer = new MutationObserver(() => {
