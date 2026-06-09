@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Slack MathJax Renderer",
   "description": "Render \\(...\\), \\[...\\], and bussproofs proof trees in Slack Web.",
-  "version": "0.1.3",
+  "version": "0.1.4",
 
   "content_scripts": [
     {
@@ -12,25 +12,13 @@
       ],
       "js": [
         "mathjax-config.js",
-        "mathjax/tex-svg.js",
+        "mathjax/tex-svg-full.js",
         "content.js"
       ],
       "css": [
         "content.css"
       ],
       "run_at": "document_idle"
-    }
-  ],
-
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "mathjax/**"
-      ],
-      "matches": [
-        "https://*.slack.com/*",
-        "https://app.slack.com/*"
-      ]
     }
   ]
 }
